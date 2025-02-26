@@ -1,0 +1,58 @@
+body {
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 20px;
+}
+
+header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.works-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+}
+
+.work-card {
+    background: rgb(240, 240, 240);
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    transition: transform 0.2s;
+}
+
+.work-card:hover {
+    transform: translateY(-2.5px);
+}
+
+.award {
+    color: #FFD700;  /* Золотой цвет для наград */
+}
+
+.btn {
+    display: inline-block;
+    padding: 8px 16px;
+    background: #2c3e50;
+    color: white;
+    text-decoration: none;
+    border-radius: 4px;
+}
+
+.error-container {
+    text-align: center;
+    padding: 40px;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.error-container h2 {
+    color: #dc3545;
+    margin-bottom: 20px;
+}
+
+.search-form {
+    margin: 0 auto;
+    text-align : center;
+}

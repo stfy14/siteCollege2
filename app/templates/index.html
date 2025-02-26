@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block content %}
+    <form class="search-form" action="{{ url_for('main.index') }}" method="GET">
+        <input type="text" 
+            name="search" 
+            placeholder="Поиск по названию..."
+            value="{{ search_query }}">
+        <button type="submit" class="btn">Найти</button>
+    </form>
+    <div class="works-grid">
+        {% for work in works.items %}
+            <div class="work-card">
+                <h3>{{ work.title }}</h3>
+                <p class="authors">{{ work.authors }}</p>
+                <p class="award">🏆 {{ work.award }}</p>
+                <a href="{{ url_for('main.work_details', work_id=work.id) }}" class="btn">Подробнее</a>
+            </div>
+        {% endfor %}
+    </div>
+    <!-- При необходимости можно добавить элементы пагинации -->
+{% endblock %}

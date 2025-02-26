@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Дипломные работы{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" media="(max-width: 768px)" 
+          href="{{ url_for('static', filename='css/mobile.css') }}">
+    {% block head %}{% endblock %}
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <h1 class="header__title">XXXIII Международный конкурс</h1>
+        </div>
+    </header>
+
+    <main class="main container">
+        {% block content %}{% endblock %}
+    </main>
+
+    <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+</body>
+</html>

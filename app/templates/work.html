@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block content %}
+    <article class="work-details">
+        <h2>{{ work.title }}</h2>
+        <div class="meta">
+            <p>Авторы: {{ work.authors }}</p>
+            <p>Университет: {{ work.university }}</p>
+            <p class="award">Награда: {{ work.award }}</p>
+        </div>
+        <p class="description">{{ work.description }}</p>
+        {% if work.file_path %}
+            <!-- Предполагается, что в БД хранится только имя файла -->
+            <a href="{{ url_for('static', filename='uploads/' ~ work.file_path) }}" class="btn">Скачать PDF</a>
+        {% endif %}
+    </article>
+{% endblock %}
