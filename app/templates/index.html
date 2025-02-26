@@ -5,6 +5,39 @@
             name="search" 
             placeholder="Поиск по названию..."
             value="{{ search_query }}">
+        
+            <select name="award">
+                <option value="">Все награды</option>
+                <option value="Диплом 1 степени" {% if award_filter == "Диплом 1 степени" %}selected{% endif %}>Диплом 1 степени</option>
+                <option value="Диплом 2 степени" {% if award_filter == "Диплом 2 степени" %}selected{% endif %}>Диплом 2 степени</option>
+                <option value="Диплом 3 степени" {% if award_filter == "Диплом 3 степени" %}selected{% endif %}>Диплом 3 степени</option>
+                <option value="Участник конкурса литературы" {% if award_filter == "Участник конкурса литературы" %}selected{% endif %}>Участник конкурса литературы</option>
+                <option value="Золотой диплом по литературе" {% if award_filter == "Золотой диплом по литературе" %}selected{% endif %}>Золотой диплом по литературе</option>
+            </select>
+        
+            <!-- Фильтр по направлениям -->
+            <select name="direction">
+                <option value="">Все направления</option>
+                <option value="Искусство в архитектуре" {% if direction_filter == "Искусство в архитектуре" %}selected{% endif %}>Искусство в архитектуре</option>
+                <option value="Компьютерные системы" {% if direction_filter == "Компьютерные системы" %}selected{% endif %}>Компьютерные системы</option>
+                <option value="Архитектура" {% if direction_filter == "Архитектура" %}selected{% endif %}>Архитектура</option>
+                <option value="Ландшафтная архитектура" {% if direction_filter == "Ландшафтная архитектура" %}selected{% endif %}>Ландшафтная архитектура</option>
+            </select>
+        
+            <!-- Фильтр по вузам (три вуза из Екатеринбурга) -->
+            <select name="university">
+                <option value="">Все вузы</option>
+                <option value="Екатеринбургский государственный университет" {% if university_filter == "Екатеринбургский государственный университет" %}selected{% endif %}>
+                    Екатеринбургский государственный университет
+                </option>
+                <option value="Уральский федеральный университет" {% if university_filter == "Уральский федеральный университет" %}selected{% endif %}>
+                    Уральский федеральный университет
+                </option>
+                <option value="Екатеринбургский институт архитектуры" {% if university_filter == "Екатеринбургский институт архитектуры" %}selected{% endif %}>
+                    Екатеринбургский институт архитектуры
+                </option>
+            </select>
+        
         <button type="submit" class="btn">Найти</button>
     </form>
     <div class="works-grid">

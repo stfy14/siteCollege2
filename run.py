@@ -19,7 +19,8 @@ def add_sample_data():
             authors="Тимонина А.В.",
             description="Освоение автономных казанков...",
             award="Диплом 1 степени",
-            university="Волгоградский государственный технический университет"
+            university="Волгоградский государственный технический университет",
+            direction="Компьютерные системы"
         )
         db.session.add(work)
         db.session.commit()
