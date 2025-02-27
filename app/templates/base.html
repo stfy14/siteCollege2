@@ -1,18 +1,19 @@
 <!DOCTYPE html>
 <html lang="ru">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}Дипломные работы{% endblock %}</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
-    <link rel="stylesheet" media="(max-width: 768px)" 
-          href="{{ url_for('static', filename='css/mobile.css') }}">
+    <script src="{{ url_for('static', filename='js/input.js') }}"></script>
     {% block head %}{% endblock %}
 </head>
+
 <body>
     <header class="header">
         <div class="container">
-            <h1 class="header__title">XXXIII Международный конкурс</h1>
+            <h1 class="header__title">Выставка дипломных работ</h1>
         </div>
     </header>
 
@@ -22,4 +23,5 @@
 
     <script src="{{ url_for('static', filename='js/app.js') }}"></script>
 </body>
+
 </html>

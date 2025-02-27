@@ -5,13 +5,15 @@ app = create_app()
 
 @app.cli.command("init-db")
 def init_db():
-    """Инициализирует базу данных."""
-    db.create_all()
-    click.echo("Database initialized.")
+    try:
+        with app.app_context():
+            db.create_all()
+        print("База данных успешно инициализирована")
+    except Exception as e:
+        print(f"Ошибка инициализации БД: {str(e)}")
 
 @app.cli.command("add-sample-data")
 def add_sample_data():
-    """Добавляет пример записи в базу данных."""
     from app.models import Work
     with app.app_context():
         work = Work(
