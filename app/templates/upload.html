@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+
+{% block header %}
+    <a href="{{ url_for('main.index') }}" class="header-button">Назад</a>
+{% endblock %}
+
+{% block content %}
+    <div class="upload-form">
+        <h2>Загрузить новую работу</h2>
+        <form method="POST" enctype="multipart/form-data">
+            <div class="form-group">
+                <label>Название работы:</label>
+                <input type="text" name="title" required>
+            </div>
+            
+            <div class="form-group">
+                <label>Авторы:</label>
+                <input type="text" name="authors" required>
+            </div>
+            
+            <div class="form-group">
+                <label>Описание:</label>
+                <textarea name="description" rows="4" required></textarea>
+            </div>
+            
+            <div class="form-group">
+                <label>Награда:</label>
+                <input type="text" name="award">
+            </div>
+            
+            <div class="form-group">
+                <label>Университет:</label>
+                <input type="text" name="university" required>
+            </div>
+
+            <div class="form-group">
+                <label>Направление (специальность):</label>
+                <input type="text" name="direction" required>
+            </div>
+            
+            <div class="form-group">
+                <label>PDF файл:</label>
+                <input type="file" name="file" accept=".pdf" required>
+            </div>
+            
+            <button type="submit" class="btn">Загрузить</button>
+        </form>
+    </div>
+{% endblock %}

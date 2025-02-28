@@ -11,7 +11,7 @@ class Work(db.Model):
     award = db.Column(db.String(50))
     university = db.Column(db.String(100))
     direction = db.Column(db.String(100))
-    file_path = db.Column(db.String(200))  
+    file_path = db.Column(db.String(255)) 
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
     is_published = db.Column(db.Boolean, default=True)
 

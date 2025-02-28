@@ -1,15 +1,53 @@
 {% extends "base.html" %}
+{% block header %}
+    <a href="{{ url_for('main.index') }}" class="header-button">Назад</a>
+{% endblock %}
 {% block content %}
     <article class="work-details">
-        <h2>{{ work.title }}</h2>
-        <div class="meta">
-            <p>Авторы: {{ work.authors }}</p>
-            <p>Университет: {{ work.university }}</p>
-            <p class="award">Награда: {{ work.award }}</p>
+        <div class="meta-frame">
+            <h2 class="meta-title">{{ work.title }}</h2>
+            <div class="meta-info">
+                <p>Авторы: {{ work.authors }}</p>
+                <p>Университет: {{ work.university }}</p>
+                <p class="award">Награда: {{ work.award }}</p>
+            </div>
+            <div class="description-frame">
+                <h1>Описание</h1>
+                <p class="description-text">{{ work.description }}</p>
+            </div>
         </div>
-        <p class="description">{{ work.description }}</p>
         {% if work.file_path %}
-            <a href="{{ url_for('static', filename='uploads/' ~ work.file_path) }}" class="btn">Скачать PDF</a>
+            <div class="pdf-frame">
+                <h2 class="pdf-title">Просмотр PDF</h2>
+                <div class="pdf-container">
+                    <iframe 
+                        src="{{ url_for('static', filename=work.file_path) }}#toolbar=0&view=FitH" 
+                        width="100%" 
+                        height="800px"
+                        frameborder="0"
+                        class="pdf-viewer"
+                        allowfullscreen>
+                        <p>Ваш браузер не поддерживает PDF. 
+                        <a href="{{ url_for('static', filename=work.file_path) }}">Скачайте файл</a></p>
+                    </iframe>
+                </div>
+                <div class="pdf-controls">
+                    <a href="{{ url_for('static', filename=work.file_path) }}" class="download-button"
+                    download
+                    title="Скачать оригинал PDF">
+                        Скачать PDF
+                    </a>
+                </div>
+            </div>
+        {% else %}
+            <div class="pdf-frame">
+                <h2 class="pdf-title">Просмотр PDF</h2>
+                <div class="pdf-container" style="border: none">
+                    <div class="no-file">
+                        ⚠️ Файл работы отсутствует
+                    </div>
+                </div>
+            </div>
         {% endif %}
     </article>
 {% endblock %}

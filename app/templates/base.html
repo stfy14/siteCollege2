@@ -4,16 +4,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}Дипломные работы{% endblock %}</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
     <script src="{{ url_for('static', filename='js/input.js') }}"></script>
+    <title>{% block title %}Дипломные работы{% endblock %}</title>
     {% block head %}{% endblock %}
 </head>
 
 <body>
     <header class="header">
-        <div class="container">
+        <div class="container-header">
             <h1 class="header__title">Выставка дипломных работ</h1>
+            <div class="header-actions">
+                {% block header %}{% endblock %}
+            </div>
         </div>
     </header>
 

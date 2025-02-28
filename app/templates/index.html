@@ -1,81 +1,84 @@
 {% extends "base.html" %}
+{% block header %}
+    <a href="{{ url_for('main.upload_work') }}" class="header-button">Добавить работу</a>
+{% endblock %}
 {% block content %}
-<div class="header-search-form">
-    <form class="filter-form" action="{{ url_for('main.index') }}" method="GET">
+    <div class="header-search-form">
+        <form class="filter-form" action="{{ url_for('main.index') }}" method="GET">
 
-        <input type="hidden" name="search" value="{{ request.args.get('search', '') }}">
+            <input type="hidden" name="search" value="{{ request.args.get('search', '') }}">
 
-        <select name="university" class="university-form" onchange="this.form.submit()">
-            <option value="">Все вузы</option>
-            <option value="Екатеринбургский государственный университет" {% if
-                university_filter=="Екатеринбургский государственный университет" %}selected{% endif %}>
-                Екатеринбургский государственный университет
-            </option>
-            <option value="Уральский федеральный университет" {% if
-                university_filter=="Уральский федеральный университет" %}selected{% endif %}>
-                Уральский федеральный университет
-            </option>
-            <option value="Екатеринбургский институт архитектуры" {% if
-                university_filter=="Екатеринбургский институт архитектуры" %}selected{% endif %}>
-                Екатеринбургский институт архитектуры
-            </option>
-        </select>
-        
-        <select name="award" class="select-box" onchange="this.form.submit()">
-            <option value="">Все награды</option>
-            <option value="Диплом 1 степени" {% if award_filter=="Диплом 1 степени" %}selected{% endif %}>Диплом 1
-                степени</option>
-            <option value="Диплом 2 степени" {% if award_filter=="Диплом 2 степени" %}selected{% endif %}>Диплом 2
-                степени</option>
-            <option value="Диплом 3 степени" {% if award_filter=="Диплом 3 степени" %}selected{% endif %}>Диплом 3
-                степени</option>
-            <option value="Участник конкурса литературы" {% if award_filter=="Участник конкурса литературы" %}selected{%
-                endif %}>Участник конкурса литературы</option>
-            <option value="Золотой диплом по литературе" {% if award_filter=="Золотой диплом по литературе" %}selected{%
-                endif %}>Золотой диплом по литературе</option>
-        </select>
+            <select name="university" class="university-form" onchange="this.form.submit()">
+                <option value="">Все вузы</option>
+                <option value="Екатеринбургский государственный университет" {% if
+                    university_filter=="Екатеринбургский государственный университет" %}selected{% endif %}>
+                    Екатеринбургский государственный университет
+                </option>
+                <option value="Уральский федеральный университет" {% if
+                    university_filter=="Уральский федеральный университет" %}selected{% endif %}>
+                    Уральский федеральный университет
+                </option>
+                <option value="Екатеринбургский институт архитектуры" {% if
+                    university_filter=="Екатеринбургский институт архитектуры" %}selected{% endif %}>
+                    Екатеринбургский институт архитектуры
+                </option>
+            </select>
+            
+            <select name="award" class="select-box" onchange="this.form.submit()">
+                <option value="">Все награды</option>
+                <option value="Диплом 1 степени" {% if award_filter=="Диплом 1 степени" %}selected{% endif %}>Диплом 1
+                    степени</option>
+                <option value="Диплом 2 степени" {% if award_filter=="Диплом 2 степени" %}selected{% endif %}>Диплом 2
+                    степени</option>
+                <option value="Диплом 3 степени" {% if award_filter=="Диплом 3 степени" %}selected{% endif %}>Диплом 3
+                    степени</option>
+                <option value="Участник конкурса литературы" {% if award_filter=="Участник конкурса литературы" %}selected{%
+                    endif %}>Участник конкурса литературы</option>
+                <option value="Золотой диплом по литературе" {% if award_filter=="Золотой диплом по литературе" %}selected{%
+                    endif %}>Золотой диплом по литературе</option>
+            </select>
 
-        <select name="direction" class="direction-form" onchange="this.form.submit()">
-            <option value="">Все направления</option>
-            <option value="Искусство в архитектуре" {% if direction_filter=="Искусство в архитектуре" %}selected{% endif
-                %}>Искусство в архитектуре</option>
-            <option value="Компьютерные системы" {% if direction_filter=="Компьютерные системы" %}selected{% endif %}>
-                Компьютерные системы</option>
-            <option value="Архитектура" {% if direction_filter=="Архитектура" %}selected{% endif %}>Архитектура</option>
-            <option value="Ландшафтная архитектура" {% if direction_filter=="Ландшафтная архитектура" %}selected{% endif
-                %}>Ландшафтная архитектура</option>
-        </select>
-    </form>
-    <form class="search-form" action="{{ url_for('main.index') }}" method="GET">
-        <input type="text" 
-               name="search" 
-               placeholder="Поиск по названию..."
-               value="{{ request.args.get('search', '') }}"
-               oninput="debounceSearch(this.form)">
-        <input type="hidden" name="award" value="{{ request.args.get('award', '') }}">
-        <input type="hidden" name="direction" value="{{ request.args.get('direction', '') }}">
-        <input type="hidden" name="university" value="{{ request.args.get('university', '') }}">
-    </form>
-</div>
-
-{% if works is none %}
-    <div class="no-works">
-        ⚠️ База данных не инициализирована. Пожалуйста, выполните настройку системы.
+            <select name="direction" class="direction-form" onchange="this.form.submit()">
+                <option value="">Все направления</option>
+                <option value="Искусство в архитектуре" {% if direction_filter=="Искусство в архитектуре" %}selected{% endif
+                    %}>Искусство в архитектуре</option>
+                <option value="Компьютерные системы" {% if direction_filter=="Компьютерные системы" %}selected{% endif %}>
+                    Компьютерные системы</option>
+                <option value="Архитектура" {% if direction_filter=="Архитектура" %}selected{% endif %}>Архитектура</option>
+                <option value="Ландшафтная архитектура" {% if direction_filter=="Ландшафтная архитектура" %}selected{% endif
+                    %}>Ландшафтная архитектура</option>
+            </select>
+        </form>
+        <form class="search-form" action="{{ url_for('main.index') }}" method="GET">
+            <input type="text" 
+                name="search" 
+                placeholder="Поиск по названию..."
+                value="{{ request.args.get('search', '') }}"
+                oninput="debounceSearch(this.form)">
+            <input type="hidden" name="award" value="{{ request.args.get('award', '') }}">
+            <input type="hidden" name="direction" value="{{ request.args.get('direction', '') }}">
+            <input type="hidden" name="university" value="{{ request.args.get('university', '') }}">
+        </form>
     </div>
-{% elif works.items|length == 0 %}
-    <div class="no-works">
-        🎉 Пока нет ни одной работы. Будьте первым!
-    </div>
-{% else %}
-    <div class="works-grid">
-        {% for work in works.items %}
-        <div class="work-card">
-            <h3>{{ work.title }}</h3>
-            <p class="authors">{{ work.authors }}</p>
-            <p class="award">🏆 {{ work.award }}</p>
-            <a href="{{ url_for('main.work_details', work_id=work.id) }}" class="btn">Подробнее</a>
+
+    {% if works is none %}
+        <div class="no-works">
+            ⚠️ База данных не инициализирована. Пожалуйста, выполните настройку системы.
         </div>
-        {% endfor %}
-    </div>
-{% endif %}
+    {% elif works.items|length == 0 %}
+        <div class="no-works">
+            🎉 Пока нет ни одной работы. Будьте первым!
+        </div>
+    {% else %}
+        <div class="works-grid">
+            {% for work in works.items %}
+            <div class="work-card">
+                <h3>{{ work.title }}</h3>
+                <p class="authors">{{ work.authors }}</p>
+                <p class="award">🏆 {{ work.award }}</p>
+                <a href="{{ url_for('main.work_details', work_id=work.id) }}" class="about-button">Подробнее</a>
+            </div>
+            {% endfor %}
+        </div>
+    {% endif %}
 {% endblock %}

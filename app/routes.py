@@ -1,5 +1,6 @@
-from flask import Blueprint, render_template, request, abort
+from flask import Blueprint, render_template, request, abort, redirect, url_for
 from flask import current_app
+from app.utils import save_uploaded_file
 from app.models import Work
 from app import db
 from sqlalchemy.exc import OperationalError
@@ -57,3 +58,44 @@ def work_details(work_id):
     if not work.is_published:
         abort(404)
     return render_template('work.html', work=work)
+
+@main_bp.route('/upload', methods=['GET', 'POST'])
+def upload_work():
+    if request.method == 'POST':
+        # Проверяем наличие файла в запросе
+        if 'file' not in request.files:
+            return "No file part", 400
+            
+        file = request.files['file']
+        
+        # Проверяем что файл был выбран
+        if file.filename == '':
+            return "No selected file", 400
+            
+        # Сохраняем файл
+        filename = save_uploaded_file(
+            file,
+            current_app.config['UPLOAD_FOLDER'],
+            current_app.config['ALLOWED_EXTENSIONS']
+        )
+        
+        if filename:
+            new_work = Work(
+                title=request.form.get('title'),
+                authors=request.form.get('authors'),
+                description=request.form.get('description'),
+                award=request.form.get('award'),
+                university=request.form.get('university'),
+                direction=request.form.get('direction'),
+                file_path=f"uploads/{filename}" 
+            )
+            
+            db.session.add(new_work)
+            db.session.commit()
+            
+            return redirect(url_for('main.work_details', work_id=new_work.id))
+        else:
+            return "File upload failed", 400
+        
+    # GET запрос - показываем форму
+    return render_template('upload.html')
