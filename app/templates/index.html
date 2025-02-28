@@ -5,6 +5,22 @@
 
         <input type="hidden" name="search" value="{{ request.args.get('search', '') }}">
 
+        <select name="university" class="university-form" onchange="this.form.submit()">
+            <option value="">Все вузы</option>
+            <option value="Екатеринбургский государственный университет" {% if
+                university_filter=="Екатеринбургский государственный университет" %}selected{% endif %}>
+                Екатеринбургский государственный университет
+            </option>
+            <option value="Уральский федеральный университет" {% if
+                university_filter=="Уральский федеральный университет" %}selected{% endif %}>
+                Уральский федеральный университет
+            </option>
+            <option value="Екатеринбургский институт архитектуры" {% if
+                university_filter=="Екатеринбургский институт архитектуры" %}selected{% endif %}>
+                Екатеринбургский институт архитектуры
+            </option>
+        </select>
+        
         <select name="award" class="select-box" onchange="this.form.submit()">
             <option value="">Все награды</option>
             <option value="Диплом 1 степени" {% if award_filter=="Диплом 1 степени" %}selected{% endif %}>Диплом 1
@@ -28,22 +44,6 @@
             <option value="Архитектура" {% if direction_filter=="Архитектура" %}selected{% endif %}>Архитектура</option>
             <option value="Ландшафтная архитектура" {% if direction_filter=="Ландшафтная архитектура" %}selected{% endif
                 %}>Ландшафтная архитектура</option>
-        </select>
-
-        <select name="university" class="university-form" onchange="this.form.submit()">
-            <option value="">Все вузы</option>
-            <option value="Екатеринбургский государственный университет" {% if
-                university_filter=="Екатеринбургский государственный университет" %}selected{% endif %}>
-                Екатеринбургский государственный университет
-            </option>
-            <option value="Уральский федеральный университет" {% if
-                university_filter=="Уральский федеральный университет" %}selected{% endif %}>
-                Уральский федеральный университет
-            </option>
-            <option value="Екатеринбургский институт архитектуры" {% if
-                university_filter=="Екатеринбургский институт архитектуры" %}selected{% endif %}>
-                Екатеринбургский институт архитектуры
-            </option>
         </select>
     </form>
     <form class="search-form" action="{{ url_for('main.index') }}" method="GET">
