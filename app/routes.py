@@ -62,17 +62,14 @@ def work_details(work_id):
 @main_bp.route('/upload', methods=['GET', 'POST'])
 def upload_work():
     if request.method == 'POST':
-        # Проверяем наличие файла в запросе
         if 'file' not in request.files:
             return "No file part", 400
             
         file = request.files['file']
         
-        # Проверяем что файл был выбран
         if file.filename == '':
             return "No selected file", 400
             
-        # Сохраняем файл
         filename = save_uploaded_file(
             file,
             current_app.config['UPLOAD_FOLDER'],
@@ -97,5 +94,4 @@ def upload_work():
         else:
             return "File upload failed", 400
         
-    # GET запрос - показываем форму
     return render_template('upload.html')
