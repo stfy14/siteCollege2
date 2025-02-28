@@ -1,8 +1,6 @@
 {% extends "base.html" %}
 {% block content %}
-<!-- Поиск по имени -->
 <div class="header-search-form">
-    <!-- Фильтры -->
     <form class="filter-form" action="{{ url_for('main.index') }}" method="GET">
 
         <input type="hidden" name="search" value="{{ request.args.get('search', '') }}">
@@ -54,7 +52,6 @@
                placeholder="Поиск по названию..."
                value="{{ request.args.get('search', '') }}"
                oninput="debounceSearch(this.form)">
-        <!-- Скрытые поля для сохранения значений фильтров -->
         <input type="hidden" name="award" value="{{ request.args.get('award', '') }}">
         <input type="hidden" name="direction" value="{{ request.args.get('direction', '') }}">
         <input type="hidden" name="university" value="{{ request.args.get('university', '') }}">
@@ -81,5 +78,4 @@
         {% endfor %}
     </div>
 {% endif %}
-<!-- добавить элементы пагинации -->
 {% endblock %}

@@ -9,7 +9,6 @@
         </div>
         <p class="description">{{ work.description }}</p>
         {% if work.file_path %}
-            <!-- Предполагается, что в БД хранится только имя файла -->
             <a href="{{ url_for('static', filename='uploads/' ~ work.file_path) }}" class="btn">Скачать PDF</a>
         {% endif %}
     </article>

@@ -22,7 +22,6 @@ def index():
         direction_filter = request.args.get('direction', '')
         university_filter = request.args.get('university', '')
 
-        # Начинаем запрос по опубликованным работам
         query = Work.query.filter_by(is_published=True)
 
         if search_query:

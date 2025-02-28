@@ -13,7 +13,13 @@ header {
 input[type="text"] { 
     border: none;
     outline: none;
+    text-align: center;
+    width: 100%;
+    background: transparent; 
+    padding-top: 6px;
+    padding-bottom: 5px;
 }
+
 
 .works-grid {
     display: grid;
@@ -52,25 +58,63 @@ input[type="text"] {
 }
 
 .search-form {
-    margin-left: 10px;
-    padding: 5px;
+    width: 50%;
     text-align: center;
     background-color: white;
     border: 1px solid rgba(0, 0, 0, 0.20);
     border-radius: 8px;
+    margin: 0 auto; 
+    box-sizing: border-box; 
+}
+
+.university-form {
+    width: 100%;
 }
 
 select {
     padding: 5px;
+    margin-right: 15px;
     text-align: center;
     border: 1px solid rgba(0, 0, 0, 0.20);
     border-radius: 8px;
 }
 
-.header-search-form {
+.filter-form {
     display: flex;
-    margin: 0 auto;
+    flex-direction: row;
+    justify-content: center;
 }
 
+.header-search-form {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+}
 
+@media screen and (max-width: 1024px) {
+    .filter-form {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        gap: 15px;
+    }
+    .header-search-form {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+        width: 100%;
+    }
+    .search-form {
+        width: 100%;
+    }
+    select {
+        width: 100%;
+        margin-right: 0px;
+    }
+    input[type="text"] {
+        font-size: 14px;
+        padding-top: 10px;
+        padding-bottom: 10px; /* Оптимизация для мобильных */ /* Добавлен padding */
+    }
+}
 
